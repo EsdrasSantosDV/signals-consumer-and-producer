@@ -1,0 +1,43 @@
+my-app {
+    display: flex;
+    flex-flow: column;
+    gap: 1em;
+    padding: 1em;;
+  }
+  
+  .flex-row {
+    display: flex;
+    flex-flow: row;
+    gap: 0.5em;
+    align-items: center;
+  }
+  
+  button {
+    padding: 0.25em 0.5em;
+    cursor: pointer;
+  }
+  
+  button.active {
+    color: blanchedalmond;
+    background-color: navy;
+  }
+  
+  html, body {
+    height: 100%;
+    padding: 0;
+    margin: 0;
+  }
+  
+  body {
+    display: flex;
+    flex-flow: column;
+  }
+  
+  footer {
+    display: flex;
+    flex-flow: column;
+    gap: 1em;
+    margin-top: auto;
+    padding-bottom: 5em;
+    padding-left: 2em;
+  }

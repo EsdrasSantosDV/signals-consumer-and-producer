@@ -1,2 +1,12 @@
-
-<router-outlet />
+<div>Active items: {{ $activeItems() }}</div>
+<div class="flex-row">
+  <span>Click to to toggle:</span>
+  @for(item of items; track item.id) {
+  <button (click)="item.$isActive.set(!item.$isActive())" [class.active]="item.$isActive()">
+    {{ item.id }}
+  </button>
+  }
+</div>
+<div>
+  <button (click)="addItem()">Add Item</button>
+</div>
