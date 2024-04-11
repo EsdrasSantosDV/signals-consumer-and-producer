@@ -16,7 +16,7 @@ export type Item = {
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet],
+  imports: [RouterOutlet,CommonModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -24,15 +24,16 @@ export type Item = {
 export class AppComponent {
   title = 'study-abril-signals';
 
-  protected readonly items: Item[] = [
+  itemsSignal: WritableSignal<Item[]> = signal([
     { id: 1, $isActive: signal(true) },
     { id: 2, $isActive: signal(false) },
     { id: 3, $isActive: signal(true) },
-  ];
+  ]);
 
+  //PAI MANJA POUCCCOOOOO
   protected readonly $activeItems = computed(() => {
     const ids = [];
-    for (const item of this.items) {
+    for (const item of this.itemsSignal()) {
       if (item.$isActive()) {
         ids.push(item.id);
       }
@@ -40,10 +41,18 @@ export class AppComponent {
     return ids.join(', ');
   });
 
+
+
   protected addItem() {
-    this.items.push({
-      id: this.items.length + 1,
-      $isActive: signal(false),
-    });
+    this.itemsSignal.update((v)=>
+      [
+        ...v,
+        {
+          id:v.length+1,
+          $isActive:signal(false)
+        }
+      ]
+    
+    )
   }
 }
